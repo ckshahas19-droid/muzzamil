@@ -1,0 +1,6 @@
+{
+  "name": "SkyElite",
+  "description": "Premium Private Jet Landing Page Hero Section",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
