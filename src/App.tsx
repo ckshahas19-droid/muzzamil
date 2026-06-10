@@ -4,7 +4,7 @@
  */
 
 import React, { useState, useRef, useEffect } from 'react';
-import { Menu, X, ChevronRight, Globe, Shield, Star, Video, Upload, RefreshCw, Volume2, VolumeX, Eye, EyeOff, Sparkles, Check, Loader2 } from 'lucide-react';
+import { Menu, X, ChevronRight, Globe, Shield, Star, Video, Upload, RefreshCw, Volume2, VolumeX, Eye, EyeOff, Sparkles, Check, Loader2, Instagram, MessageCircle } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 
 // --- IndexedDB Video Storage Helpers for Permanent Client-Side Restores ---
@@ -346,9 +346,14 @@ export default function App() {
       </AnimatePresence>
 
       {/* Hero Section Container */}
-      <section id="home" className="relative h-screen overflow-hidden w-full flex flex-col">
-        {/* Background Video */}
-        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden">
+      <section id="home" className="relative h-screen overflow-hidden w-full flex flex-col bg-[#030508]">
+        {/* Background Video with CSS Ambient Fallback Gradients */}
+        <div className="absolute inset-0 w-full h-full z-0 overflow-hidden bg-[#030508]">
+          {/* Subtle slow pulser gradient backdrop */}
+          <div className="absolute inset-0 bg-gradient-to-tr from-[#020305] via-[#0b0f19] to-[#040c1a]" />
+          <div className="absolute top-[20%] right-[10%] w-[600px] h-[600px] bg-cyan-950/20 rounded-full blur-[150px] pointer-events-none" />
+          <div className="absolute bottom-[10%] left-[5%] w-[500px] h-[500px] bg-sky-950/25 rounded-full blur-[120px] pointer-events-none" />
+
           <video
             ref={videoRef}
             key={bgSource + '-' + (customVideoUrl ? 'custom' : 'preset')}
@@ -356,13 +361,14 @@ export default function App() {
             muted={isMuted}
             loop
             playsInline
+            referrerPolicy="no-referrer"
             className="absolute inset-0 w-full h-full object-cover transition-all duration-1000"
             src={
               bgSource === 'custom' && customVideoUrl
                 ? customVideoUrl
                 : bgSource === 'flight'
-                ? "https://assets.mixkit.co/videos/preview/mixkit-flying-over-clouds-21985-large.mp4"
-                : "https://assets.mixkit.co/videos/preview/mixkit-private-jet-flying-above-the-clouds-40280-large.mp4"
+                ? "/oceans.mp4"
+                : "/clouds.mp4"
             }
           />
 
@@ -608,36 +614,6 @@ export default function App() {
           </div>
         </section>
 
-        {/* Unlock More Section */}
-        <section id="unlock-more" className="py-32 px-8 bg-[#030508] border-b border-white/5">
-          <div className="max-w-4xl mx-auto">
-            <div className="relative overflow-hidden border border-cyan-500/10 bg-zinc-950/20 p-8 md:p-12 flex flex-col md:flex-row items-center justify-between gap-8">
-              <div className="flex flex-col gap-3 text-left max-w-xl relative z-10">
-                <span className="text-[10px] font-semibold tracking-[0.3em] text-cyan-500 uppercase">Exclusive Content</span>
-                <h3 className="text-xl md:text-2xl font-light tracking-wide text-white leading-snug">
-                  Unlock premium health updates, training programs, and exclusive support feeds.
-                </h3>
-                <p className="text-zinc-500 font-light text-xs leading-relaxed">
-                  Connect on a direct channel, request tailor-made routines, and support new projects.
-                </p>
-              </div>
-              
-              <div className="flex-shrink-0 relative z-10">
-                <a 
-                  href="https://onlyfans.com/muzammil"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-7 py-3.5 bg-zinc-900 border border-white/10 hover:border-cyan-500/40 text-white font-light tracking-[0.15em] text-xs transition-all duration-300 active:scale-95 cursor-pointer flex items-center gap-2"
-                >
-                  <OnlyFansLogo size={14} />
-                  <span>SUBSCRIBE NOW</span>
-                  <ChevronRight size={14} />
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Contact Section */}
         <section id="contact" className="py-32 px-8 bg-[#030508]">
           <div className="max-w-4xl mx-auto">
@@ -653,12 +629,12 @@ export default function App() {
                 </p>
                 <div className="flex flex-col gap-3">
                   <a 
-                    href="mailto:hello@muzammil.com"
+                    href="mailto:muzzammilcr@gmail.com"
                     className="flex items-center justify-between p-4 bg-zinc-950/20 hover:bg-zinc-950/40 border border-white/5 hover:border-white/10 transition-all duration-300 group"
                   >
                     <div className="flex flex-col text-left">
                       <span className="text-[9px] text-zinc-500 font-medium uppercase tracking-wider">Email Address</span>
-                      <span className="text-zinc-300 font-normal text-xs mt-1 transition-colors group-hover:text-cyan-400">hello@muzammil.com</span>
+                      <span className="text-zinc-300 font-normal text-xs mt-1 transition-colors group-hover:text-cyan-400">muzzammilcr@gmail.com</span>
                     </div>
                     <ChevronRight size={14} className="text-zinc-650 group-hover:text-cyan-400 transition-colors" />
                   </a>
@@ -675,16 +651,29 @@ export default function App() {
                   </a>
 
                   <a 
-                    href="https://onlyfans.com/muzammil"
+                    href="https://www.instagram.com/muzaml._/?utm_source=ig_web_button_share_sheet"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="flex items-center justify-between p-4 bg-zinc-950/20 hover:bg-zinc-950/40 border border-cyan-500/5 hover:border-cyan-500/20 transition-all duration-300 group"
+                    className="flex items-center justify-between p-4 bg-zinc-950/20 hover:bg-zinc-950/40 border border-pink-500/5 hover:border-pink-500/20 transition-all duration-300 group"
                   >
                     <div className="flex flex-col text-left">
-                      <span className="text-[9px] text-zinc-500 font-medium uppercase tracking-wider">Unlock Support Feed</span>
-                      <span className="text-zinc-300 font-normal text-xs mt-1 transition-colors group-hover:text-cyan-400">OnlyFans Profile</span>
+                      <span className="text-[9px] text-zinc-500 font-medium uppercase tracking-wider">Follow On Socials</span>
+                      <span className="text-zinc-300 font-normal text-xs mt-1 transition-colors group-hover:text-pink-400">Instagram Profile</span>
                     </div>
-                    <OnlyFansLogo size={14} className="text-zinc-600 group-hover:text-cyan-400 transition-colors" />
+                    <Instagram size={14} className="text-zinc-600 group-hover:text-pink-400 transition-colors" />
+                  </a>
+
+                  <a 
+                    href="https://wa.me/919447630221"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center justify-between p-4 bg-zinc-950/20 hover:bg-zinc-950/40 border border-[#25d366]/5 hover:border-[#25d366]/20 transition-all duration-300 group"
+                  >
+                    <div className="flex flex-col text-left">
+                      <span className="text-[9px] text-zinc-500 font-medium uppercase tracking-wider">Instant Chat</span>
+                      <span className="text-zinc-300 font-normal text-xs mt-1 transition-colors group-hover:text-[#25d366]">WhatsApp Message</span>
+                    </div>
+                    <MessageCircle size={14} className="text-zinc-600 group-hover:text-[#25d366] transition-colors" />
                   </a>
                 </div>
               </div>
